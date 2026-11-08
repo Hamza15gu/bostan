@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>بُستان الفاخر – خضار وفواكه وبقالة مختارة</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Tajawal:wght@400;500;700&display=swap">
+<style>
+:root{--bg:#f4f6f2;--surface:#fff;--ink:#14231a;--muted:#5d6b61;--deep:#10281c;--gold:#b8923a;--rose:#8c1d2f;--line:#dfe4dc;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0c1710;--surface:#14241a;--ink:#eef2ec;--muted:#9fb0a4;--deep:#07110b;--line:#25382b}}
+:root[data-theme="dark"]{--bg:#0c1710;--surface:#14241a;--ink:#eef2ec;--muted:#9fb0a4;--deep:#07110b;--line:#25382b}
+*{box-sizing:border-box;margin:0}
+html{scroll-padding-top:70px;scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font-family:Tajawal,Tahoma,sans-serif;line-height:1.7}
+h1,h2,h3,.logo{font-family:Amiri,"Times New Roman",serif}
+button{font:inherit;cursor:pointer}
+:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+header{position:sticky;top:0;z-index:20;background:var(--deep);color:#f4efe0;display:flex;align-items:center;gap:16px;padding:12px 5%}
+.logo{font-size:1.7rem;font-weight:700;color:var(--gold);margin-inline-end:auto}
+header a{color:#e9e6da;text-decoration:none;font-size:.95rem}
+.cartbtn{background:var(--gold);color:#1a1405;border:0;border-radius:99px;padding:8px 18px;font-weight:700}
+.hero{background:var(--deep);color:#f4efe0;padding:56px 5% 72px;display:grid;grid-template-columns:1.2fr 1fr;gap:32px;align-items:center}
+.hero h1{font-size:clamp(2.6rem,7vw,5rem);line-height:1.15;font-weight:700}
+.hero p{max-width:34ch;margin:18px 0 28px;color:#c9d3c8;font-size:1.1rem}
+.cta{background:var(--gold);color:#1a1405;border:0;border-radius:4px;padding:13px 30px;font-weight:700;text-decoration:none;display:inline-block}
+.plate{aspect-ratio:1;max-width:380px;justify-self:center;width:100%;border-radius:50%;border:1px solid var(--gold);display:grid;grid-template-columns:repeat(3,1fr);place-items:center;font-size:clamp(2.4rem,9vw,4.2rem);padding:10%;background:radial-gradient(circle at 50% 40%,#1d4430,#10281c 70%)}
+.perks{display:flex;flex-wrap:wrap;justify-content:center;gap:12px 40px;padding:18px 5%;background:var(--surface);border-bottom:1px solid var(--line);color:var(--muted);font-size:.95rem}
+section.shop{padding:48px 5%}
+.shop h2{font-size:2.2rem}
+.tools{display:flex;flex-wrap:wrap;gap:10px;margin:18px 0 28px}
+.tools input{flex:1 1 200px;padding:10px 14px;border:1px solid var(--line);border-radius:6px;background:var(--surface);color:var(--ink);font:inherit}
+.chip{border:1px solid var(--line);background:var(--surface);color:var(--ink);border-radius:99px;padding:8px 18px}
+.chip[aria-pressed="true"]{background:var(--deep);color:#f4efe0;border-color:var(--deep)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:22px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:6px;overflow:hidden;display:flex;flex-direction:column}
+.thumb{height:150px;display:grid;place-items:center;font-size:4.4rem;overflow:hidden;font-family:Amiri,serif}.thumb img{width:100%;height:100%;object-fit:cover}
+.card .b{padding:14px 16px 16px;display:flex;flex-direction:column;gap:4px;flex:1}
+.card h3{font-size:1.35rem}
+.card small{color:var(--muted)}
+.row{display:flex;justify-content:space-between;align-items:center;margin-top:auto;padding-top:10px}
+.price{font-weight:700;color:var(--rose)}
+:root[data-theme="dark"] .price{color:#e08a98}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .price{color:#e08a98}}
+.add{background:var(--deep);color:#f4efe0;border:0;border-radius:4px;padding:7px 14px}
+.empty{padding:40px;text-align:center;color:var(--muted)}
+.story{background:var(--deep);color:#f4efe0;padding:56px 5%;text-align:center}
+.story h2{font-size:2.2rem;color:var(--gold)}
+.story p{max-width:60ch;margin:12px auto 0;color:#c9d3c8}
+footer{padding:28px 5%;text-align:center;color:var(--muted);font-size:.9rem}
+#drawer{position:fixed;inset:0 auto 0 0;width:min(400px,100%);background:var(--surface);z-index:40;transform:translateX(-105%);transition:transform .25s;display:flex;flex-direction:column;box-shadow:0 0 40px rgba(0,0,0,.35);padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+#drawer.open{transform:none}
+#drawer header{position:static;padding:14px 20px}
+#items{flex:1;overflow:auto;padding:8px 20px}
+.it{display:grid;grid-template-columns:auto 1fr auto;gap:12px;align-items:center;padding:12px 0;border-bottom:1px solid var(--line)}
+.it .e{font-size:2rem}
+.q{display:flex;align-items:center;gap:8px;margin-top:4px}
+.q button{width:28px;height:28px;border-radius:50%;border:1px solid var(--line);background:var(--bg);color:var(--ink)}
+.rm{background:none;border:0;color:var(--rose);font-size:.85rem}
+.foot{padding:18px 20px;border-top:1px solid var(--line)}
+.tot{display:flex;justify-content:space-between;font-size:1.2rem;font-weight:700;margin-bottom:12px}
+.foot .cta{width:100%;text-align:center}
+#veil{position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:30;display:none}
+#veil.on{display:block}
+#imgm{position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:50;display:none;place-items:center;padding:16px}#imgm.on{display:grid}.mb{background:var(--surface);padding:20px;border-radius:8px;width:min(480px,100%);display:flex;flex-direction:column;gap:10px}.mb input,.mb select,.mb textarea{padding:9px;border:1px solid var(--line);border-radius:6px;background:var(--bg);color:var(--ink);font:inherit;width:100%}.mb .btns{display:flex;gap:8px;flex-wrap:wrap}.mb small{color:var(--muted)}.mb{max-height:90vh;overflow:auto}.bi{display:grid;grid-template-columns:70px 1fr;gap:8px;align-items:center}.bi img{width:70px;height:70px;object-fit:cover;border-radius:6px;background:var(--line)}
+.plate{position:relative}.plate::before{content:"";position:absolute;inset:-14px;border-radius:50%;border:1px dashed var(--gold);opacity:.55;animation:spin 40s linear infinite}.plate span{animation:fl 5s ease-in-out infinite}.plate span:nth-child(2){animation-delay:-1s}.plate span:nth-child(3){animation-delay:-2s}.plate span:nth-child(4){animation-delay:-3s}.plate span:nth-child(5){animation-delay:-4s}.plate span:nth-child(6){animation-delay:-2.5s}
+@keyframes spin{to{transform:rotate(360deg)}}@keyframes fl{50%{transform:translateY(-9px)}}
+.card{transition:transform .2s,box-shadow .2s}.card:hover{transform:translateY(-4px);box-shadow:0 12px 28px rgba(16,40,28,.18)}
+#toast{position:fixed;bottom:calc(20px + env(safe-area-inset-bottom,0px));left:50%;transform:translate(-50%,30px);background:var(--deep);color:#f4efe0;border:1px solid var(--gold);padding:10px 22px;border-radius:99px;opacity:0;transition:opacity .25s,transform .25s;z-index:60;pointer-events:none;white-space:nowrap}#toast.on{opacity:1;transform:translate(-50%,0)}
+@media (prefers-reduced-motion:reduce){.plate::before,.plate span{animation:none}}
+@media (max-width:760px){.hero{grid-template-columns:1fr;padding-top:36px}header a{display:none}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+<header>
+  <div class="logo">بُستان</div>
+  <a href="#shop">المتجر</a><a href="#about">قصتنا</a>
+  <button class="cartbtn" id="open" aria-label="فتح السلة">السلة (<span id="cnt">0</span>)</button>
+</header>
+
+<div class="hero">
+  <div>
+    <h1>من البستان<br>إلى مائدتك</h1>
+    <p>خضار وفواكه وبقالة منتقاة يدويًا كل صباح، وتصل إلى بابك طازجة.</p>
+    <a class="cta" href="#shop">تسوّق الآن</a>
+  </div>
+  <div class="plate" aria-hidden="true"><span>🍇</span><span>🍑</span><span>🥑</span><span>🍓</span><span>🍋</span><span>🫒</span></div>
+</div>
+
+<div class="perks"><span>توصيل في اليوم نفسه</span><span>منتجات عضوية موثوقة</span><span>ضمان الطزاجة أو استرجاع المبلغ</span></div>
+
+<section class="shop" id="shop">
+  <h2>اختيارات اليوم</h2>
+  <div class="tools">
+    <input id="q" type="search" placeholder="ابحث عن منتج…" aria-label="بحث">
+    <span id="chips" style="display:contents"></span>
+  </div>
+  <div class="grid" id="grid"></div>
+</section>
+
+<section class="story" id="about">
+  <h2>قصتنا</h2>
+  <p>نعمل مع مزارعين نعرفهم بالاسم، ونقبل من الحصاد ما يبلغ معيارنا فقط. كل صندوق يُفحص ويُغلّف بعناية قبل أن يغادر المتجر.</p>
+</section>
+<footer>© بُستان – جميع الحقوق محفوظة<br><button class="chip" id="imgopen" style="margin-top:10px">إدارة صور المنتجات</button></footer>
+<div id="imgm"><div class="mb" role="dialog" aria-label="إدارة الصور"><h3>إضافة رابط صورة</h3><select id="isel" aria-label="المنتج"></select><input id="iurl" type="url" dir="ltr" placeholder="https://example.com/image.jpg"><div class="btns"><button class="add" id="isave">حفظ الرابط</button><button class="chip" id="idel">حذف الصورة</button><button class="chip" id="iexp">تصدير الروابط</button><button class="chip" id="iclose">إغلاق</button></div><hr style="border:0;border-top:1px solid var(--line)"><strong>تعيين جماعي</strong><small>الصق كل روابط الصور (رابط في كل سطر) ثم اضغط «عرض الصور» واختر المنتج المناسب تحت كل صورة.</small><textarea id="bl" rows="4" dir="ltr" placeholder="https://iraqpixel.com/image/..."></textarea><button class="add" id="bgo">عرض الصور</button><div id="bres" style="display:grid;gap:10px"></div><textarea id="iout" rows="4" dir="ltr" readonly hidden></textarea><small>تُحفظ الروابط في هذا المتصفح فقط. للتثبيت الدائم اضغط «تصدير» والصق النتيجة مكان var IMG في الكود.</small></div></div>
+
+<div id="veil"></div>
+<div id="toast" role="status" aria-live="polite"></div>
+<aside id="drawer" aria-label="سلة التسوق">
+  <header><div class="logo" style="font-size:1.4rem">سلتك</div><button class="rm" id="close" style="color:#e9e6da;font-size:1rem">إغلاق</button></header>
+  <div id="items"></div>
+  <div class="foot">
+    <div class="tot"><span>الإجمالي</span><span id="total"></span></div>
+    <a class="cta" id="order" href="#" target="_blank" rel="noopener">إتمام الطلب عبر واتساب</a>
+  </div>
+</aside>
+
+<script>
+// عدّل هذه القيم حسب متجرك
+var CUR="$", WA="+212700576441";  // WA: رقم واتساب بصيغة دولية بدون + مثل 213550000000
+var P=[
+["تفاح أحمر","فواكه","1 كغ",4.5,"🍎","#f3d9d9"],["فراولة","فواكه","علبة 500 غ",6,"🍓","#f6dbe0"],
+["عنب أسود","فواكه","1 كغ",7.5,"🍇","#e4dbee"],["مانجو","فواكه","1 كغ",8,"🥭","#fbe8c4"],
+["خوخ","فواكه","1 كغ",6.5,"🍑","#fbe0d2"],["ليمون","فواكه","1 كغ",3,"🍋","#f7f0c2"],
+["أفوكادو","خضار","3 حبات",5.5,"🥑","#dbe9cf"],["طماطم كرزية","خضار","علبة 400 غ",4,"🍅","#f6d6d0"],
+["جزر عضوي","خضار","1 كغ",2.5,"🥕","#fbdfc3"],["فلفل ملوّن","خضار","500 غ",4.8,"🫑","#d9ead2"],
+["بروكلي","خضار","حبة",3.2,"🥦","#d6e8d4"],["زيتون كالاماتا","بقالة","برطمان 350 غ",9,"🫒","#e1e5c8"],
+["عسل سدر","بقالة","عبوة 500 غ",28,"🍯","#f6e2b3"],["زيت زيتون بكر","بقالة","زجاجة 500 مل",15,"🫗","#e6ebc9"],
+["جبن مُعتّق","بقالة","قطعة 250 غ",12,"🧀","#f8ebb9"],["خبز حرفي","بقالة","رغيف",3.5,"🍞","#efdcc3"]
+];
+var IMG={
+  "تفاح أحمر": "https://iraqpixel.com/images/2026/11/08/3a1f7c8611991e30bb701d23ddb95154.jpg",
+  "فراولة": "https://iraqpixel.com/images/2026/11/08/2b353f1778e3b9d96c00eed15c395ff2.jpg",
+  "عنب أسود": "https://iraqpixel.com/images/2026/11/08/8cd7f67c12cdf0d0418bfd1d286ef0a9.jpg",
+  "مانجو": "https://iraqpixel.com/images/2026/11/08/3d5a3bcf9d9476eacf415ede232f706d.jpg",
+  "خوخ": "https://iraqpixel.com/images/2026/11/08/bfc2399bf1012e9d7767d28f819b79f1.jpg",
+  "ليمون": "https://iraqpixel.com/images/2026/11/08/8f57dd436c5e3867fcd69056a3560930.jpg",
+  "أفوكادو": "https://iraqpixel.com/images/2026/11/08/bdbe883e46e39f2e441a80da3f0fee4f.jpg",
+  "طماطم كرزية": "https://iraqpixel.com/images/2026/11/08/8e47fe549ad0df9018262fdb10565971.jpg",
+  "جزر عضوي": "https://iraqpixel.com/images/2026/11/08/56f9c4cfa03023e6294ac3003497fafb.jpg",
+  "فلفل ملوّن": "https://iraqpixel.com/images/2026/11/08/204a4ce8a345ff82a0eda404e044089f.jpg",
+  "بروكلي": "https://iraqpixel.com/images/2026/11/08/71f7237024f307b99a7c7229398488a2.jpg",
+  "زيتون كالاماتا": "https://iraqpixel.com/images/2026/11/08/f42a611a6232dd96cf744d162380fd2a.jpg",
+  "عسل سدر": "https://iraqpixel.com/images/2026/11/08/43bd81e1e023c060fc4463f053b1553b.jpg",
+  "زيت زيتون بكر": "https://iraqpixel.com/images/2026/11/08/c12378273be5c4502f10d73f943f6584.jpg",
+  "جبن مُعتّق": "https://iraqpixel.com/images/2026/11/08/d8055f0a0148a3f452ff4869bfb9615b.jpg",
+  "خبز حرفي": "https://iraqpixel.com/images/2026/11/08/da7833b885956af4d9923eb97e4e09a1.jpg",
+  "موز": "https://iraqpixel.com/images/2026/11/08/098deb96d85b4616fc9f902aa258fbdf.jpg",
+  "برتقال": "https://iraqpixel.com/images/2026/11/08/054f190455f5f7981b9b00a5652d09bc.jpg",
+  "جزر": "https://iraqpixel.com/images/2026/11/08/Carrot-isolated-on-white.jpg",
+  "خيار": "https://iraqpixel.com/images/2026/11/08/b12a532fa575f03b3be647bdf5ae0192.jpg",
+  "طماطم": "https://iraqpixel.com/images/2026/11/08/7aaaa545e00e8a434850e80b8910dd94.jpg",
+  "بطاطس": "https://iraqpixel.com/images/2026/11/08/ab7b23fff69f4c74e2406f6841d58e57.jpg",
+  "ثوم": "https://iraqpixel.com/images/2026/11/08/477a4648c42c648a74524106dc608a20.jpg",
+  "خس": "https://iraqpixel.com/images/2026/11/08/9cfc0799b21eff6895ad37688176deb8-%281%29.jpg"
+};
+try{var sv=JSON.parse(localStorage.getItem("bostan_img")||"{}");for(var k in sv)IMG[k]=sv[k]}catch(e){}
+var COL=["#f3d9d9","#fbe8c4","#dbe9cf","#e4dbee","#fbe0d2","#f7f0c2","#d6e8d4","#f6dbe0"];
+var FR="تفاح أحمر:🍎:4.5,تفاح أخضر:🍏:4.5,تفاح ذهبي:🍎:4.8,كمثرى:🍐:5,برتقال:🍊:3,يوسفي:🍊:3.5,كلمنتينا:🍊:4,ليمون أصفر:🍋:3,موز:🍌:2.8,بطيخ:🍉:2,شمام:🍈:2.5,عنب أحمر:🍇:7,عنب أخضر:🍇:7,عنب أسود:🍇:7.5,فراولة:🍓:6:علبة 500 غ,توت أزرق:🫐:9:علبة 250 غ,كرز:🍒:12,خوخ:🍑:6.5,مانجو:🥭:8,أناناس:🍍:4:حبة,جوز الهند:🥥:3.5:حبة,كيوي:🥝:6,أفوكادو:🥑:5.5:3 حبات".split(",");
+var VG="طماطم:🍅:2.5,طماطم كرزية:🍅:4:علبة 400 غ,خيار:🥒:2,جزر:🥕:2.5,بطاطس:🥔:1.8,بطاطا حلوة:🍠:3,ثوم:🧄:5,فلفل رومي ملوّن:🫑:4.8,فلفل أخضر:🫑:3,فلفل حار:🌶️:3.5,باذنجان:🍆:2.8,ذرة:🌽:1.5:حبتان,بروكلي:🥦:3.2:حبة,خس:🥬:1.5:حبة,خس روماني:🥬:2:حبة,سبانخ:🥬:2.5,فاصولياء خضراء:🫛:4,بازلاء:🫛:4.5,فطر:🍄:5:علبة 250 غ,زنجبيل:🫚:6".split(",");
+function mk(L,c){return L.map(function(t,i){var a=t.split(":");return [a[0],c,a[3]||"1 كغ",+a[2],a[1],COL[i%COL.length]]})}
+P=P.filter(function(p){return p[1]==="بقالة"});P=mk(FR,"فواكه").concat(mk(VG,"خضار"),P);
+function thumb(p){var u=IMG[p[0]],f=p[4]||p[0][0];return u?'<img src="'+u+'" alt="'+p[0]+'" loading="lazy" data-f="'+f+'" onerror="this.replaceWith(document.createTextNode(this.dataset.f))">':f}
+var cats=["الكل","فواكه","خضار","بقالة"],cat="الكل",cart={};
+try{cart=JSON.parse(localStorage.getItem("bostan")||"{}")}catch(e){}
+function save(){try{localStorage.setItem("bostan",JSON.stringify(cart))}catch(e){}}
+function $(i){return document.getElementById(i)}
+function money(n){return n.toFixed(2)+" "+CUR}
+function renderChips(){$("chips").innerHTML=cats.map(function(c){return '<button class="chip" aria-pressed="'+(c===cat)+'" data-c="'+c+'">'+c+'</button>'}).join("")}
+function renderGrid(){
+  var t=$("q").value.trim(),h="";
+  P.forEach(function(p,i){
+    if((cat==="الكل"||p[1]===cat)&&(!t||p[0].indexOf(t)>-1)){
+      h+='<div class="card"><div class="thumb" style="background:'+p[5]+'">'+thumb(p)+'</div><div class="b"><h3>'+p[0]+'</h3><small>'+p[2]+'</small><div class="row"><span class="price">'+money(p[3])+'</span><button class="add" data-i="'+i+'">أضف إلى السلة</button></div></div></div>';
+    }
+  });
+  $("grid").innerHTML=h||'<p class="empty">لا توجد منتجات مطابقة. جرّب كلمة أخرى أو اختر قسمًا مختلفًا.</p>';
+}
+function renderCart(){
+  var h="",tot=0,n=0,msg="مرحبًا، أودّ طلب:%0A";
+  Object.keys(cart).forEach(function(i){
+    var p=P[i],q=cart[i];tot+=p[3]*q;n+=q;msg+="- "+p[0]+" × "+q+"%0A";
+    h+='<div class="it"><span class="e">'+(p[4]||p[0][0])+'</span><div><strong>'+p[0]+'</strong><div class="q"><button data-m="'+i+'" aria-label="إنقاص">−</button><span>'+q+'</span><button data-p="'+i+'" aria-label="زيادة">+</button></div></div><div><div class="price">'+money(p[3]*q)+'</div><button class="rm" data-r="'+i+'">إزالة</button></div></div>';
+  });
+  $("items").innerHTML=h||'<p class="empty">سلتك فارغة. أضف منتجًا من المتجر لتبدأ.</p>';
+  $("cnt").textContent=n;$("total").textContent=money(tot);
+  msg+="%0Aالإجمالي: "+tot.toFixed(2)+" "+CUR;
+  $("order").href=n&&WA?"https://wa.me/"+WA+"?text="+msg:"#";
+  $("order").onclick=function(e){if(!n){e.preventDefault()}else if(!WA){e.preventDefault();alert("أضف رقم واتساب في المتغيّر WA داخل الكود لتفعيل إرسال الطلب.")}};
+  save();
+}
+var tt;function toast(m){var t=$("toast");t.textContent=m;t.classList.add("on");clearTimeout(tt);tt=setTimeout(function(){t.classList.remove("on")},1800)}
+function drawer(o){$("drawer").classList.toggle("open",o);$("veil").classList.toggle("on",o)}
+document.addEventListener("click",function(e){
+  var d=e.target.dataset;if(!d)return;
+  if(d.c){cat=d.c;renderChips();renderGrid()}
+  if(d.i){cart[d.i]=(cart[d.i]||0)+1;renderCart();toast("أُضيف «"+P[d.i][0]+"» إلى السلة")}
+  if(d.p){cart[d.p]++;renderCart()}
+  if(d.m){if(--cart[d.m]<1)delete cart[d.m];renderCart()}
+  if(d.r){delete cart[d.r];renderCart()}
+});
+$("q").addEventListener("input",renderGrid);
+$("open").onclick=function(){drawer(true)};$("close").onclick=$("veil").onclick=function(){drawer(false)};
+$("isel").innerHTML=P.map(function(p){return '<option>'+p[0]+'</option>'}).join("");
+function sel(){$("iurl").value=IMG[$("isel").value]||""}
+$("isel").onchange=sel;sel();
+function sv2(){try{localStorage.setItem("bostan_img",JSON.stringify(IMG))}catch(e){}renderGrid();renderCart()}
+$("isave").onclick=function(){var u=$("iurl").value.trim();if(u){IMG[$("isel").value]=u;sv2()}};
+$("idel").onclick=function(){delete IMG[$("isel").value];$("iurl").value="";sv2()};
+$("iexp").onclick=function(){var o=$("iout");o.hidden=false;o.value="var IMG="+JSON.stringify(IMG)+";";o.select()};
+$("imgopen").onclick=function(){$("imgm").classList.add("on")};
+$("iclose").onclick=function(){$("imgm").classList.remove("on")};
+function dl(u){u=u.trim();if(!u)return"";if(u.indexOf("/images/")>-1)return u;var m=u.match(/\/image\/(.+)\.[^.\/]+$/);return m?"https://iraqpixel.com/images/2026/11/08/"+m[1]+".jpg":u}
+function bx(im){var e=["png","webp","jpeg"],k=+im.dataset.x;if(k<e.length){im.dataset.x=k+1;im.src=im.src.replace(/\.[a-z]+$/i,"."+e[k])}}
+$("bgo").onclick=function(){var L=$("bl").value.split(/\s+/).map(dl).filter(Boolean),h="",o='<option value="">اختر المنتج</option>'+P.map(function(p){return '<option>'+p[0]+'</option>'}).join("");L.forEach(function(u){h+='<div class="bi"><img src="'+u+'" alt="" data-x="0" onerror="bx(this)"><select data-u="1">'+o+'</select></div>'});$("bres").innerHTML=h};
+$("bres").onchange=function(e){var s=e.target;if(s.dataset.u&&s.value){IMG[s.value]=s.previousElementSibling.src;sv2()}};
+renderChips();renderGrid();renderCart();
+</script>
+</body>
+</html>
